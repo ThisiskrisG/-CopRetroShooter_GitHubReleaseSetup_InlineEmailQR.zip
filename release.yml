@@ -1,0 +1,146 @@
+name: Psud QR OTP Secure Release with PDF
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Generate and Release with OTP, QR, PDF
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install tools and dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip pwgen python3-pip
+          pip install fpdf2 qrcode[pil]
+
+      - name: Generate 24-Char OTP
+        id: otp
+        run: |
+          OTP=$(pwgen -cnsB 24 1)
+          echo "::add-mask::$OTP"
+          echo "OTP=$OTP" >> $GITHUB_ENV
+
+      - name: Create ZIPs
+        run: |
+          mkdir -p release_assets
+          zip -r -P "$OTP" release_assets/sprites.zip assets/sprites/
+          zip -r -P "$OTP" release_assets/maps.zip maps/
+          zip -r -P "$OTP" release_assets/animations.zip animations/
+        env:
+          OTP: ${{ env.OTP }}
+
+      - name: Generate styled QR + logo and release summary PDF
+        run: |
+          python3 <<EOF
+from fpdf import FPDF
+from datetime import datetime
+from PIL import Image
+import qrcode
+from qrcode.image.styledpil import StyledPilImage
+from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
+from qrcode.image.styles.colormasks import SolidFillColorMask
+
+otp = "${{ env.OTP }}"
+version = "${{ github.ref_name }}"
+timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+
+qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H)
+qr.add_data(otp)
+qr.make()
+img = qr.make_image(
+    image_factory=StyledPilImage,
+    module_drawer=RoundedModuleDrawer(),
+    color_mask=SolidFillColorMask(back_color=(255, 255, 255), front_color=(25, 125, 255))
+).convert("RGBA")
+
+logo = Image.open("branding/logo.png").convert("RGBA")
+logo.thumbnail((img.size[0] // 4, img.size[1] // 4))
+img.paste(logo, ((img.size[0] - logo.size[0]) // 2, (img.size[1] - logo.size[1]) // 2), logo)
+img.save("release_assets/otp.png")
+
+pdf = FPDF()
+pdf.add_page()
+pdf.set_font("Arial", size=14)
+pdf.set_text_color(25, 25, 112)
+pdf.set_font("Arial", style='B', size=14)
+pdf.cell(200, 10, txt="Psud Secure Game Release", ln=True, align='C')
+pdf.set_text_color(0, 0, 0)
+pdf.set_font("Arial", size=12)
+pdf.ln(10)
+pdf.cell(200, 10, txt=f"Release Version: {version}", ln=True)
+pdf.cell(200, 10, txt=f"Timestamp: {timestamp}", ln=True)
+pdf.cell(200, 10, txt=f"Secure OTP: {otp}", ln=True)
+pdf.image("release_assets/otp.png", x=50, y=80, w=100)
+pdf.output("release_assets/psud_release_summary.pdf")
+EOF
+        env:
+          OTP: ${{ env.OTP }}
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          body: |
+            🔐 Assets are password-protected. OTP sent and logged.
+            This release includes a printable summary with QR and branding.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Email PDF summary with inline QR via Mailgun
+        run: |
+          curl -s --user "api:${{ secrets.MAILGUN_API_KEY }}" \
+            https://api.mailgun.net/v3/${{ secrets.MAILGUN_DOMAIN }}/messages \
+            -F from="${{ secrets.MAILGUN_FROM }}" \
+            -F to="you@example.com" \
+            -F to="dev@example.com" \
+            -F subject="📄 Psud Release Summary PDF – ${{ github.ref_name }}" \
+            -F html="<html>
+              <body>
+                <p>Attached is the secure PDF summary for this release.</p>
+                <p><strong>QR Preview:</strong><br>
+                <img src='cid:qr-code'></p>
+              </body>
+            </html>" \
+            -F attachment=@release_assets/psud_release_summary.pdf \
+            -F inline=@release_assets/otp.png \
+            -F inline="Content-ID: qr-code"
+      - name: Email PDF summary with inline QR via Mailgun
+        run: |
+          curl -s --user "api:${{ secrets.MAILGUN_API_KEY }}" \
+            https://api.mailgun.net/v3/${{ secrets.MAILGUN_DOMAIN }}/messages \
+            -F from="${{ secrets.MAILGUN_FROM }}" \
+            -F to="you@example.com" \
+            -F to="dev@example.com" \
+            -F subject="📄 Psud Release Summary PDF – ${{ github.ref_name }}" \
+            -F html="<html>
+              <body>
+                <p>Attached is the secure PDF summary for this release.</p>
+                <p><strong>QR Preview:</strong><br>
+                <img src='cid:qr-code'></p>
+              </body>
+            </html>" \
+            -F attachment=@release_assets/psud_release_summary.pdf \
+            -F inline=@release_assets/otp.png \
+            -F inline="Content-ID: qr-code"
+      - name: Upload assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release_assets/sprites.zip
+            release_assets/maps.zip
+            release_assets/animations.zip
+            release_assets/tileset.png
+            release_assets/bgm.mp3
+            release_assets/otp.png
+            release_assets/psud_release_summary.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
