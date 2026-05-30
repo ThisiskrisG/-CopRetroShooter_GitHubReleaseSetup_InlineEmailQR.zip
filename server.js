@@ -243,6 +243,6 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Game file server listening on http://localhost:${PORT}`);
+  console.log(`PhonexOS file server listening on http://localhost:${PORT}`);
   console.log(`Serving files from ${STORAGE_DIR}`);
 });

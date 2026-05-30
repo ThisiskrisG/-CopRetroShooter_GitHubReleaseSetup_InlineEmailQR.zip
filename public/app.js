@@ -11,7 +11,7 @@ const uploadStatus = document.querySelector('#uploadStatus');
 const adCopyStatus = document.querySelector('#adCopyStatus');
 const copyAdButtons = document.querySelectorAll('.copy-ad');
 
-apiBaseInput.value = localStorage.getItem('gameFileApiBase') || '';
+apiBaseInput.value = localStorage.getItem('phonexosApiBase') || localStorage.getItem('gameFileApiBase') || '';
 
 function apiUrl(path) {
   const base = apiBaseInput.value.trim().replace(/\/$/, '');
@@ -35,8 +35,8 @@ function setStatus(message, target = statusBox, tone = 'neutral') {
 function renderEmptyState() {
   fileList.innerHTML = `
     <li class="empty-state">
-      <strong>No game files yet.</strong>
-      <span>Upload your first build from the admin area and it will appear here for players.</span>
+      <strong>No PhonexOS files yet.</strong>
+      <span>Upload your first build, document, screenshot, or support file from the admin area and it will appear here.</span>
     </li>
   `;
 }
@@ -70,7 +70,7 @@ async function loadFiles() {
       renderEmptyState();
       return;
     }
-    setStatus(`${payload.files.length} file${payload.files.length === 1 ? '' : 's'} ready for players.`, statusBox, 'success');
+    setStatus(`${payload.files.length} PhonexOS file${payload.files.length === 1 ? '' : 's'} ready.`, statusBox, 'success');
     payload.files.forEach((file) => {
       const item = document.createElement('li');
       item.className = 'file-item';
@@ -150,7 +150,7 @@ async function refreshEverything() {
 }
 
 saveApiButton.addEventListener('click', () => {
-  localStorage.setItem('gameFileApiBase', apiBaseInput.value.trim());
+  localStorage.setItem('phonexosApiBase', apiBaseInput.value.trim());
   refreshEverything();
 });
 refreshButton.addEventListener('click', refreshEverything);
