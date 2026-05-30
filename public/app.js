@@ -139,7 +139,7 @@ async function copyAdvertisement(button) {
   const text = button.dataset.copy;
   try {
     await navigator.clipboard.writeText(text);
-    setStatus('Advertisement copy saved to clipboard. Replace [YOUR LINK] with your live website URL.', adCopyStatus, 'success');
+    setStatus('Copy saved to clipboard. Replace bracketed placeholders with your live website URL, meeting link, or contact details.', adCopyStatus, 'success');
   } catch (error) {
     setStatus(`Copy failed: ${error.message}. You can still manually highlight and copy the ad text.`, adCopyStatus, 'error');
   }

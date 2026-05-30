@@ -4,7 +4,7 @@ This project gives you a server-side website for presenting **PhonexOS** develop
 
 ## What it includes
 
-- A polished PhonexOS website in `public/` with a landing hero, development details, roadmap phases, promotion copy, download portal, setup guide, and admin upload controls.
+- A polished PhonexOS website in `public/` with a landing hero, development details, roadmap phases, investor showcase invite copy, promotion copy, download portal, setup guide, and admin upload controls.
 - A Node.js file server with upload, list, download, health, and delete API routes.
 - A `game-files/` storage folder for local development. In production, set `STORAGE_DIR` to a persistent disk or mounted volume.
 - GitHub issue and pull request templates for tracking requested work that should be handled by a PR.
@@ -16,9 +16,10 @@ The homepage now focuses on PhonexOS and includes:
 1. **Project snapshot** — a quick explanation of the operating-layer / launcher-style concept.
 2. **Development details** — the vision, audience, delivery model, and project structure.
 3. **Roadmap phases** — brand foundation, prototype builds, and feedback / consulting.
-4. **Promotion kit** — copy-ready advertisement previews for social posts, sidebars, email, and website banners.
-5. **Build portal** — public download cards loaded from the server API.
-6. **Admin control** — protected uploads using `ADMIN_TOKEN`.
+4. **Investor showcase** — local staff, advisor, and investor invitation copy plus a virtual event outline.
+5. **Promotion kit** — copy-ready advertisement previews for social posts, sidebars, email, and website banners.
+6. **Build portal** — public download cards loaded from the server API.
+7. **Admin control** — protected uploads using `ADMIN_TOKEN`.
 
 ## Run locally
 
@@ -34,6 +35,18 @@ Open <http://localhost:3000> to use the PhonexOS development hub. Paste the admi
 2. Set `CORS_ORIGIN` to your GitHub Pages URL, for example `https://your-user.github.io`.
 3. Publish the `public/` folder to GitHub Pages.
 4. In the website's **API base URL** field, enter your server URL and click **Save**.
+
+## Inviting local staff and investors
+
+You can use GitHub Pages as the public virtual showcase page for PhonexOS. GitHub Pages hosts static HTML, CSS, and JavaScript, so it can show the pitch, roadmap, downloadable files, and invite copy. It does not send bulk emails by itself.
+
+Suggested workflow:
+
+1. Publish the site on GitHub Pages.
+2. Replace `investors@example.com` in `public/index.html` with your real contact address.
+3. Copy the investor invite text from the **Investor showcase** section.
+4. Send the invite through your email account, calendar tool, CRM, or newsletter provider.
+5. Add your meeting link, GitHub Pages URL, and any private investor files you want to share.
 
 ## Request an issue and pull request action
 

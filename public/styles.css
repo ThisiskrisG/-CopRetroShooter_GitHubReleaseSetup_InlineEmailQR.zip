@@ -420,6 +420,71 @@ h2 {
   background: linear-gradient(135deg, rgba(67, 217, 255, 0.13), rgba(5, 10, 20, 0.56));
 }
 
+.showcase-panel {
+  margin-top: 1rem;
+  background:
+    linear-gradient(135deg, rgba(12, 18, 32, 0.94), rgba(17, 24, 39, 0.88)),
+    radial-gradient(circle at 10% 15%, rgba(255, 209, 102, 0.14), transparent 20rem),
+    radial-gradient(circle at 90% 5%, rgba(67, 217, 255, 0.14), transparent 20rem);
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.showcase-card {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 1.1rem;
+  background: rgba(5, 10, 20, 0.48);
+}
+
+.showcase-card h3 {
+  margin-bottom: 0.55rem;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+}
+
+.showcase-card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.featured-showcase {
+  grid-row: span 3;
+  display: grid;
+  align-content: start;
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.12), rgba(5, 10, 20, 0.56));
+}
+
+.check-list {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0;
+  margin: 1rem 0 0;
+  list-style: none;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.check-list li::before {
+  position: absolute;
+  left: 0;
+  color: var(--warning);
+  content: "✦";
+}
+
+.invite-copy-card {
+  border-color: rgba(255, 209, 102, 0.34);
+}
+
 .status-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
@@ -572,6 +637,7 @@ code {
   .dashboard-grid,
   .admin-grid,
   .ad-preview-grid,
+  .showcase-grid,
   .feature-grid,
   .roadmap-grid {
     grid-template-columns: 1fr;
@@ -588,6 +654,10 @@ code {
   .ad-hero-preview,
   .ad-email-preview {
     grid-column: auto;
+  }
+
+  .featured-showcase {
+    grid-row: auto;
   }
 }
 
