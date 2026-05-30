@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cop Retro Shooter Command Hub</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="site-shell">
+      <section class="hero-grid" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Cop Retro Shooter · Secure Builds</p>
+          <h1 id="page-title">One blended website for your game files and public downloads.</h1>
+          <p class="hero-text">
+            Put heavy builds, sprites, maps, music, and protected release bundles on your server.
+            Share this same polished frontend from the server or GitHub Pages so players always
+            land in one place.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#downloads">Browse files</a>
+            <a class="button secondary" href="#ads">Preview ads</a>
+            <a class="button secondary" href="#admin">Upload build</a>
+          </div>
+        </div>
+
+        <aside class="mission-card" aria-label="Distribution flow">
+          <div class="pulse-orb"></div>
+          <h2>Distribution flow</h2>
+          <ol class="flow-list">
+            <li><span>1</span>Upload game files to private server storage.</li>
+            <li><span>2</span>Publish the frontend on GitHub Pages or serve it here.</li>
+            <li><span>3</span>Players download the latest files from your server.</li>
+          </ol>
+        </aside>
+      </section>
+
+
+      <section id="ads" class="panel ads-panel" aria-labelledby="ads-title">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Promotion kit</p>
+            <h2 id="ads-title">Advertisement previews you can use</h2>
+            <p class="muted">
+              Copy these ready-to-post ad ideas for your GitHub Pages site, Discord, email list,
+              itch.io page, or social media. Replace the call-to-action link with your live site URL.
+            </p>
+          </div>
+          <a class="button secondary" href="#downloads">Link to downloads</a>
+        </div>
+
+        <div class="ad-preview-grid">
+          <article class="ad-preview ad-hero-preview">
+            <div class="ad-label">Website hero banner</div>
+            <h3>Cop Retro Shooter is locked, loaded, and ready for patrol.</h3>
+            <p>Download the newest secure build, grab the latest game files, and jump into the retro chase.</p>
+            <a class="ad-cta" href="#downloads">Play the latest build</a>
+            <button class="copy-ad button secondary" type="button" data-copy="Cop Retro Shooter is locked, loaded, and ready for patrol. Download the newest secure build, grab the latest game files, and jump into the retro chase: [YOUR LINK]">Copy text</button>
+          </article>
+
+          <article class="ad-preview ad-social-preview">
+            <div class="ad-label">Social post</div>
+            <h3>🚨 New build drop</h3>
+            <p>Fresh files are live for Cop Retro Shooter. Fast retro action, secure downloads, and more updates on the way.</p>
+            <a class="ad-cta" href="#downloads">Get the files</a>
+            <button class="copy-ad button secondary" type="button" data-copy="🚨 New build drop: Fresh files are live for Cop Retro Shooter. Fast retro action, secure downloads, and more updates on the way. Get it here: [YOUR LINK]">Copy text</button>
+          </article>
+
+          <article class="ad-preview ad-card-preview">
+            <div class="ad-label">Small sidebar ad</div>
+            <h3>Retro police action. Modern secure downloads.</h3>
+            <p>Visit the Cop Retro Shooter file hub for the newest release package.</p>
+            <a class="ad-cta" href="#downloads">Download now</a>
+            <button class="copy-ad button secondary" type="button" data-copy="Retro police action. Modern secure downloads. Visit the Cop Retro Shooter file hub for the newest release package: [YOUR LINK]">Copy text</button>
+          </article>
+
+          <article class="ad-preview ad-email-preview">
+            <div class="ad-label">Email / newsletter</div>
+            <h3>The latest Cop Retro Shooter files are ready.</h3>
+            <p>Open the game hub to download the newest build and release assets from the official server.</p>
+            <a class="ad-cta" href="#downloads">Open the hub</a>
+            <button class="copy-ad button secondary" type="button" data-copy="The latest Cop Retro Shooter files are ready. Open the game hub to download the newest build and release assets from the official server: [YOUR LINK]">Copy text</button>
+          </article>
+        </div>
+        <div id="adCopyStatus" class="inline-status" aria-live="polite"></div>
+      </section>
+
+      <section class="panel status-panel" aria-labelledby="connection-title">
+        <div>
+          <p class="section-kicker">Connection</p>
+          <h2 id="connection-title">Connect this website to your file server</h2>
+          <p class="muted">
+            Leave this blank when the API and website are on the same domain. If you publish the
+            frontend to GitHub Pages, paste your server URL here once and it will be remembered.
+          </p>
+        </div>
+        <div class="connection-form">
+          <label for="apiBase">API base URL</label>
+          <div class="input-row">
+            <input id="apiBase" type="url" placeholder="https://your-server.example.com" autocomplete="url">
+            <button id="saveApi" class="button primary" type="button">Save</button>
+          </div>
+          <div id="serverStatus" class="server-status">Checking server…</div>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <section id="downloads" class="panel downloads-panel" aria-labelledby="downloads-title">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">Player portal</p>
+              <h2 id="downloads-title">Available game files</h2>
+              <p class="muted">Players can use this area to download the files you make available.</p>
+            </div>
+            <button id="refreshFiles" class="button secondary" type="button">Refresh</button>
+          </div>
+          <div id="status" class="inline-status">Loading files…</div>
+          <ul id="fileList" class="file-list" aria-live="polite"></ul>
+        </section>
+
+        <aside class="panel guide-panel" aria-labelledby="guide-title">
+          <p class="section-kicker">Setup guide</p>
+          <h2 id="guide-title">Best way to use this</h2>
+          <div class="guide-step">
+            <strong>Server</strong>
+            <span>Deploy Node with persistent storage and a strong <code>ADMIN_TOKEN</code>.</span>
+          </div>
+          <div class="guide-step">
+            <strong>GitHub</strong>
+            <span>Publish the <code>public/</code> folder as your lightweight frontend.</span>
+          </div>
+          <div class="guide-step">
+            <strong>Players</strong>
+            <span>Send them the website link, not raw storage links.</span>
+          </div>
+        </aside>
+      </section>
+
+      <section id="admin" class="panel admin-panel" aria-labelledby="admin-title">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Admin control</p>
+            <h2 id="admin-title">Upload a new game file</h2>
+            <p class="muted">
+              Your token is sent only to the API URL you configured above. Do not share this admin
+              section with players unless uploads are disabled on your server.
+            </p>
+          </div>
+        </div>
+        <div class="admin-grid">
+          <label>
+            Admin token
+            <input id="adminToken" type="password" placeholder="Paste ADMIN_TOKEN">
+          </label>
+          <label>
+            Game file
+            <input id="gameFile" type="file">
+          </label>
+          <button id="uploadFile" class="button primary upload-button" type="button">Upload file</button>
+        </div>
+        <div id="uploadStatus" class="inline-status"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

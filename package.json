@@ -1,0 +1,19 @@
+{
+  "name": "cop-retro-shooter-file-server",
+  "version": "1.0.0",
+  "description": "Server-side file host and GitHub Pages-ready frontend for distributing Cop Retro Shooter game files.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --check server.js"
+  },
+  "keywords": [
+    "game-files",
+    "file-server",
+    "github-pages"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
