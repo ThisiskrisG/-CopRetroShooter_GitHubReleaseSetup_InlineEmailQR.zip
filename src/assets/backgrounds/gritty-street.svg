@@ -1,0 +1,45 @@
+<!-- Simple stylized gritty street background -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b0b0f"/>
+      <stop offset="1" stop-color="#070707"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" x2="1">
+      <stop offset="0" stop-color="#2e2bff" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#ff2e7a" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#sky)"/>
+  <!-- distant buildings -->
+  <g fill="#0f0f12" opacity="0.95">
+    <rect x="0" y="120" width="220" height="370" rx="4"/>
+    <rect x="200" y="80" width="180" height="420" rx="4"/>
+    <rect x="420" y="150" width="240" height="340" rx="4"/>
+    <rect x="680" y="100" width="260" height="390" rx="4"/>
+    <rect x="960" y="140" width="240" height="360" rx="4"/>
+  </g>
+  <!-- windows -->
+  <g fill="#111" opacity="0.65">
+    <rect x="30" y="150" width="12" height="16" rx="2"/>
+    <rect x="60" y="150" width="12" height="16" rx="2"/>
+    <rect x="380" y="180" width="10" height="12" rx="2"/>
+    <rect x="720" y="170" width="12" height="14" rx="2"/>
+    <rect x="1020" y="170" width="10" height="12" rx="2"/>
+  </g>
+  <!-- alley layers and road -->
+  <rect x="0" y="460" width="1200" height="260" fill="#070708"/>
+  <path d="M0 520 L1200 520 L1200 720 L0 720 Z" fill="#0b0b0b"/>
+  <!-- neon smear for atmosphere -->
+  <rect x="200" y="300" width="800" height="12" fill="url(#neon)" opacity="0.35"/>
+  <!-- subtle grunge texture -->
+  <g opacity="0.06" fill="#000">
+    <circle cx="150" cy="610" r="220"/>
+    <circle cx="980" cy="640" r="180"/>
+  </g>
+  <!-- trashcan and small props -->
+  <g transform="translate(920,520)" fill="#0b0b0b">
+    <rect x="0" y="0" width="24" height="36" rx="4"/>
+    <rect x="-8" y="6" width="8" height="4" fill="#111"/>
+  </g>
+</svg>
