@@ -1,0 +1,41 @@
+{
+  "start_node": "downtown_entry",
+  "nodes": {
+    "downtown_entry": {
+      "title": "Downtown Entry",
+      "description": "Neon rain covers the street as Randy Jason arrives.",
+      "choices": [
+        { "label": "Go to HQ", "next": "hq_lobby" },
+        { "label": "Patrol the alley", "next": "alley_patrol" }
+      ]
+    },
+    "hq_lobby": {
+      "title": "HQ Lobby",
+      "description": "The dispatcher flags a critical case.",
+      "choices": [
+        { "label": "Take mission briefing", "next": "mission_brief" },
+        { "label": "Return downtown", "next": "downtown_entry" }
+      ]
+    },
+    "alley_patrol": {
+      "title": "Alley Patrol",
+      "description": "You hear encrypted radio chatter near old crates.",
+      "choices": [
+        { "label": "Investigate signal", "next": "mission_brief" },
+        { "label": "Fall back", "next": "downtown_entry" }
+      ]
+    },
+    "mission_brief": {
+      "title": "Mission Brief",
+      "description": "Randy Jason is confirmed as the playable star character.",
+      "choices": [
+        { "label": "Start Chapter 1", "next": "chapter_one" }
+      ]
+    },
+    "chapter_one": {
+      "title": "Chapter One",
+      "description": "Loadout synced. Objective marker active.",
+      "choices": []
+    }
+  }
+}

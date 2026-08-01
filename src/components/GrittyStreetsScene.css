@@ -1,0 +1,15 @@
+.gritty-scene {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f12 100%);
+}
+.gritty-canvas {
+  border-radius: 8px;
+  background: #050506;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+  max-width: 100%;
+  height: auto;
+}

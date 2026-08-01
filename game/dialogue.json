@@ -1,0 +1,23 @@
+{
+  "characters": {
+    "randy_jason": {
+      "display_name": "Randy Jason",
+      "role": "Star Character"
+    },
+    "dispatcher": {
+      "display_name": "Dispatcher Vox",
+      "role": "Support"
+    }
+  },
+  "scenes": {
+    "intro": [
+      { "speaker": "dispatcher", "line": "Unit RJ-01, report in." },
+      { "speaker": "randy_jason", "line": "Randy Jason online. Streets look hot tonight." },
+      { "speaker": "dispatcher", "line": "Your route is updated. Head to HQ or patrol the alley." }
+    ],
+    "mission_brief": [
+      { "speaker": "dispatcher", "line": "You are primary lead on Operation Neon Grid." },
+      { "speaker": "randy_jason", "line": "Copy that. Marking objectives and moving out." }
+    ]
+  }
+}
